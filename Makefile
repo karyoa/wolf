@@ -6,7 +6,7 @@
 #    By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/12 21:43:25 by yokartou          #+#    #+#              #
-#    Updated: 2018/04/28 12:44:56 by yokartou         ###   ########.fr        #
+#    Updated: 2018/03/14 13:28:35 by yokartou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,28 +18,23 @@ CFLAGS = -Wall -Werror -Wextra
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-SRC_DIR = srcs
+SRC_DIR = src
 
-INC_DIR = incs
+INC_DIR = include
 
 OBJ_DIR = objs
 
-LIBS = -L minilibx \
-	   -I libft \
-	   -L./libft/ -lft
+LIBS = -I minilibx -I libft -L./libft/ -lft
 
-SRC = map.c \
-	coord.c \
-	draw.c \
-	hook.c \
-	keyboard.c \
-	main.c \
-	player.c \
-	raycast.c \
-	raydraw.c \
-	read.c \
-	setup_mlx.c \
-	texture.c
+SRC = draw.c \
+	  hook.c \
+	  keyboard.c \
+	  main.c \
+	  raycast.c \
+	  raydraw.c \
+	  read.c \
+	  setup_mlx.c \
+	  texture.c
 
 OBJ = $(SRC:%.c=objs/%.o)
 
@@ -51,7 +46,7 @@ objs :
 $(NAME): $(OBJ)
 	@make -C libft/
 	@make -C minilibx
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS) #-g -fsanitize=address
 	@echo "Wolf3d Done"
 
 objs/%.o: $(SRC_DIR)/%.c
