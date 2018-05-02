@@ -87,7 +87,6 @@ typedef struct	s_ray
 	double		perpwalldist;
 	int			hit;
 	int 		hit_side;
-	double		zbuffer[WIDTH];
 }				t_ray;
 
 typedef struct	s_mlx
