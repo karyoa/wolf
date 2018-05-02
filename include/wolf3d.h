@@ -115,6 +115,13 @@ typedef struct	s_env
 	int					x;
 	int					y;
 	double				wallx;
+	// struct s_dxy		floor;
+	// struct s_ixy		floortex;
+	// struct s_dxy		curfloor;
+	// double 				walldist;
+	// double 				playerdist;
+	// double				currentdist;
+	// double 				weight;
 	struct s_keyboard	key;
 }				t_env;
 
