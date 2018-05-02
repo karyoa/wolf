@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:10:11 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:24:11 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:33:16 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@
 
 # define FOV 0.66
 
-# define TEXT_W		"texture/floor1.xpm"
-# define TEXT_E		"texture/floor2.xpm"
-# define TEXT_N		"texture/floor3.xpm"
-# define TEXT_S		"texture/floor4.xpm"
+# define TEXT_W "texture/wall1v.xpm"
+# define TEXT_E	"texture/wall2v.xpm"
+# define TEXT_N	"texture/wall3v.xpm"
+# define TEXT_S	"texture/wall4v.xpm"
+# define TEXT_F	"texture/ceil1.xpm"
+# define TEXT_P "texture/ceil4.xpm"
 
 typedef struct	s_ixy
 {
@@ -118,7 +120,7 @@ typedef struct	s_env
 	struct s_player		player;
 	struct s_ray		ray;
 	struct s_ixy		tex;
-	struct s_img		*wall[10];
+	struct s_img		*wall[6];
 	struct s_map		map;
 	char				*input;
 	int					lineheight;

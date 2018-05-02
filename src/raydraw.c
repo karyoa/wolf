@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:08:45 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:31:29 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ void		ft_draw(t_env *e, int x)
 		e->floortex.x = (int)(e->curfloor.x * 64) % 64;
 		e->floortex.y = (int)(e->curfloor.y * 64) % 64;
 		put_pxl(e, e->x, e->y,
-			getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
+			getcolor(e->wall[4], e->floortex.x, e->floortex.y, 0));
 		put_pxl(e, e->x, HEIGHT - e->y,
-			getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
+			getcolor(e->wall[5], e->floortex.x, e->floortex.y, 0));
 		e->y++;
 	}
 }

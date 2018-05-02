@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:02:24 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:25:20 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:30:13 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	ft_load_text(t_env *e)
 	e->wall[1] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_E, &width, &height);
 	e->wall[2] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_N, &width, &height);
 	e->wall[3] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_S, &width, &height);
+	e->wall[4] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_F, &width, &height);
+	e->wall[5] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_P, &width, &height);
 }
 
 static int	ft_loop_hook(t_env *e)

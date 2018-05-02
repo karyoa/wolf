@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:34 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 18:53:17 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:33:45 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,4 @@ int		getcolor(t_img *img, int x, int y, int fade)
 	color += img->buffer[c + 1] * 256;
 	color += img->buffer[c + 2] * 256 * 256;
 	return (color);
-}
-
-void	drawbyside(t_env *e, int x, int y)
-{
-	if (e->ray.dir.y > 0 && e->ray.hit_side)
-		put_pxl(e, x, y, 0xFF0000);
-	if (e->ray.dir.y < 0 && e->ray.hit_side)
-		put_pxl(e, x, y, 0x00FF00);
-	if (e->ray.dir.x > 0 && e->ray.hit_side == 0)
-		put_pxl(e, x, y, 0x0000FF);
-	if (e->ray.dir.x < 0 && e->ray.hit_side == 0)
-		put_pxl(e, x, y, 0xAA00BB);
 }
