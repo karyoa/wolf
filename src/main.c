@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 18:52:21 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 18:57:49 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-void		setplane(t_env *e)
+static void	ft_set_plane(t_env *e)
 {
 	double	fx;
 	double	fy;
@@ -15,20 +27,20 @@ void		setplane(t_env *e)
 	e->player.plane.y = FOV * py;
 }
 
-void	ft_error(char *error)
+void		ft_error(char *error)
 {
 	ft_putstr(error);
 	exit(0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_env	e;
 
 	if (ac != 2)
 		ft_error("Error Number Argument");
 	read_params(&e, av[1]);
-	setplane(&e);
+	ft_set_plane(&e);
 	setup_mlx(&e);
 	return (0);
 }

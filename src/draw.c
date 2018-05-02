@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 18:52:34 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 18:53:17 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
-
-int		tchouin(int r, int g, int b)
-{
-	int	color;
-
-	color = 256 * 256 * r;
-	color += 256 * g;
-	color += b;
-	return (color);
-}
 
 void	put_pxl(t_env *e, int x, int y, int color)
 {

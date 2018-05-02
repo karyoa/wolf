@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 18:59:35 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-void	ft_ray_init(t_env *e, int x)
+static void	ft_ray_init(t_env *e, int x)
 {
 	e->ray.cam = 2 * x / (double)(WIDTH) - 1;
 	e->ray.pos.x = e->player.pos.x;
@@ -15,7 +27,7 @@ void	ft_ray_init(t_env *e, int x)
 			/ (e->ray.dir.y * e->ray.dir.y));
 }
 
-void	ft_ray_find_side(t_env *e)
+static void	ft_ray_find_side(t_env *e)
 {
 	if (e->ray.dir.x < 0)
 	{
@@ -39,7 +51,7 @@ void	ft_ray_find_side(t_env *e)
 	}
 }
 
-void	ft_ray_dda(t_env *e)
+static void	ft_ray_dda(t_env *e)
 {
 	while (e->ray.hit == 0)
 	{
@@ -60,17 +72,19 @@ void	ft_ray_dda(t_env *e)
 	}
 }
 
-void	ft_ray_dist(t_env *e)
+static void	ft_ray_dist(t_env *e)
 {
 	if (e->ray.hit_side == 0)
 		e->ray.perpwalldist = fabs(
-				(e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x) / 2) / e->ray.dir.x);
+				(e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x) / 2)
+				/ e->ray.dir.x);
 	else
 		e->ray.perpwalldist = fabs(
-				(e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y);
+				(e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y) / 2)
+				/ e->ray.dir.y);
 }
 
-void	ft_raycasting(t_env *e)
+void		ft_raycasting(t_env *e)
 {
 	int			x;
 

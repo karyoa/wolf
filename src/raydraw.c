@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raydraw.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 19:08:45 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-void	ft_ray_limit(t_env *e)
+static void	ft_ray_limit(t_env *e)
 {
 	e->lineheight = abs((int)(HEIGHT / e->ray.perpwalldist));
 	e->drawstart = -e->lineheight / 2 + HEIGHT / 2;
@@ -21,7 +33,7 @@ void	ft_ray_limit(t_env *e)
 	e->y = 0;
 }
 
-int		ft_wall_side(t_env *e)
+static int	ft_wall_side(t_env *e)
 {
 	if (e->ray.hit_side == 1)
 	{
@@ -30,7 +42,7 @@ int		ft_wall_side(t_env *e)
 			return (0);
 		if ((e->ray.step.x == -1 && e->ray.step.y == 1) ||
 			(e->ray.step.x == 1 && e->ray.step.y == 1))
-				return (1);
+			return (1);
 	}
 	if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||
 		(e->ray.step.x == -1 && e->ray.step.y == 1))
@@ -38,7 +50,7 @@ int		ft_wall_side(t_env *e)
 	return (3);
 }
 
-void	ft_draw_wall(t_env *e)
+static void	ft_draw_wall(t_env *e)
 {
 	int	d;
 	int	wall;
@@ -54,56 +66,53 @@ void	ft_draw_wall(t_env *e)
 	}
 }
 
-// void 	ft_draw_floor(t_env *e)
-// {
-// 	if (e->ray.hit_side == 0 && e->ray.dir.x > 0)
-// 	{
-//     	e->floor.x = e->player.pos.x;
-//         e->floor.y = e->player.pos.y + e->wallx;
-//     }
-//     else if (e->ray.hit_side == 0 && e->ray.dir.x < 0)
-//     {
-//         e->floor.x = e->player.pos.x + 1.0;
-//         e->floor.y = e->player.pos.y + e->wallx;
-//     }
-//     else if (e->ray.hit_side == 1 && e->ray.dir.y > 0)
-//     {
-//         e->floor.x = e->player.pos.x + e->wallx;
-//         e->floor.y = e->player.pos.y;
-//     }
-//     else
-//     {
-//         e->floor.x = e->player.pos.x + e->wallx;
-//         e->floor.y = e->player.pos.y + 1.0;
-//     }
-// 	e->walldist = e->ray.perpwalldist;
-//     e->playerdist = 0.0;
-// 	while (e->y < HEIGHT - e->y)
-//     {
-//         e->currentdist = HEIGHT / (2.0 * e->y - HEIGHT);
-//         e->weight = (e->currentdist - e->playerdist) / (e->walldist - e->playerdist);
-//         e->curfloor.x = e->weight * e->floor.x + (1.0 - e->weight) * e->player.pos.x;
-//         e->curfloor.y = e->weight * e->floor.y + (1.0 - e->weight) * e->player.pos.y;
-//         e->floortex.x = (int)(e->curfloor.x * 64) % 64;
-//         e->floortex.y = (int)(e->curfloor.y * 64) % 64;
-// 		// put_pxl(e, e->x, HEIGHT - e->y, getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
-// 		put_pxl(e, e->x, e->y, getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
-//         // buffer[y][x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
-//         // buffer[h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
-// 		e->y++;
-// 	}
-// }
-
-void	ft_draw(t_env *e, int x)
+static void	ft_draw_floor(t_env *e)
 {
-	ft_ray_limit(e);
-	e->x = x;
-	ft_draw_wall(e);
-	// ft_draw_fl oor(e);
-	while (e->y < HEIGHT + 1)
+	if (e->ray.hit_side == 0 && e->ray.dir.x > 0)
 	{
-		put_pxl(e, e->x, e->y, 0x252525);
-		put_pxl(e, e->x, HEIGHT - e->y, 0xabcdef);
+		e->floor.x = e->ray.map.x;
+		e->floor.y = e->ray.map.y + e->wallx;
+	}
+	else if (e->ray.hit_side == 0 && e->ray.dir.x < 0)
+	{
+		e->floor.x = e->ray.map.x + 1.0;
+		e->floor.y = e->ray.map.y + e->wallx;
+	}
+	else if (e->ray.hit_side == 1 && e->ray.dir.y > 0)
+	{
+		e->floor.x = e->ray.map.x + e->wallx;
+		e->floor.y = e->ray.map.y;
+	}
+	else
+	{
+		e->floor.x = e->ray.map.x + e->wallx;
+		e->floor.y = e->ray.map.y + 1.0;
+	}
+	e->walldist = e->ray.perpwalldist;
+	e->playerdist = 0.0;
+}
+
+void		ft_draw(t_env *e, int x)
+{
+	e->x = x;
+	ft_ray_limit(e);
+	ft_draw_wall(e);
+	ft_draw_floor(e);
+	while (e->y < HEIGHT)
+	{
+		e->currentdist = HEIGHT / (2.0 * e->y - HEIGHT);
+		e->weight = (e->currentdist - e->playerdist)
+		/ (e->walldist - e->playerdist);
+		e->curfloor.x = e->weight * e->floor.x
+		+ (1.0 - e->weight) * e->player.pos.x;
+		e->curfloor.y = e->weight * e->floor.y
+		+ (1.0 - e->weight) * e->player.pos.y;
+		e->floortex.x = (int)(e->curfloor.x * 64) % 64;
+		e->floortex.y = (int)(e->curfloor.y * 64) % 64;
+		put_pxl(e, e->x, e->y,
+			getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
+		put_pxl(e, e->x, HEIGHT - e->y,
+			getcolor(e->wall[0], e->floortex.x, e->floortex.y, 0));
 		e->y++;
 	}
 }

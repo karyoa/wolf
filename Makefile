@@ -6,7 +6,7 @@
 #    By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/12 21:43:25 by yokartou          #+#    #+#              #
-#    Updated: 2018/03/14 13:28:35 by yokartou         ###   ########.fr        #
+#    Updated: 2018/05/02 18:57:04 by yokartou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,13 @@ OBJ_DIR = objs
 LIBS = -I minilibx -I libft -L./libft/ -lft
 
 SRC = draw.c \
-	  hook.c \
-	  keyboard.c \
+	  keyhook.c \
 	  main.c \
 	  raycast.c \
 	  raydraw.c \
 	  read.c \
 	  setup_mlx.c \
-	  texture.c
+	  move.c
 
 OBJ = $(SRC:%.c=objs/%.o)
 

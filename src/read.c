@@ -6,7 +6,7 @@
 /*   By: ojerroud <ojerroud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:47:10 by ojerroud          #+#    #+#             */
-/*   Updated: 2018/05/02 13:58:50 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:01:41 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	read_map(t_env *e, int fd, char *line, char **tab)
 
 static void	read_first_line(t_env *e, int fd, char *line, char **tab)
 {
-	int		i;
 	int		cpt;
 
 	if (get_next_line(fd, &line) < 1)
@@ -52,7 +51,7 @@ static void	read_first_line(t_env *e, int fd, char *line, char **tab)
 	while (tab[cpt])
 		cpt++;
 	if (cpt != 4)
-		ft_error("wrong first line (4 integers expected: width height posx posy)");
+		ft_error("wrong first line (4 int expected: width height posx posy)");
 	ft_strdel(&line);
 	e->map.width = ft_atoi(tab[0]);
 	e->map.height = ft_atoi(tab[1]);
@@ -64,9 +63,9 @@ static void	read_first_line(t_env *e, int fd, char *line, char **tab)
 	(e->player.pos.x > e->map.width) ? e->player.pos.x = e->map.width : 0;
 	(e->player.pos.y < 1) ? e->player.pos.y = 1 : 0;
 	(e->player.pos.y > e->map.height) ? e->player.pos.y = e->map.height : 0;
-	i = -1;
-	while (tab[++i])
-		ft_strdel(&tab[i]);
+	e->i = -1;
+	while (tab[++e->i])
+		ft_strdel(&tab[e->i]);
 	free(tab);
 }
 

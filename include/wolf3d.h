@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 19:10:11 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 19:16:23 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
@@ -26,15 +38,15 @@
 
 # define FOV 0.66
 
-# define TEXTURE_WEST		"texture/floor1.xpm"
-# define TEXTURE_EAST		"texture/floor2.xpm"
-# define TEXTURE_NORTH		"texture/floor3.xpm"
-# define TEXTURE_SOUTH		"texture/floor4.xpm"
+# define TEXT_W		"texture/floor1.xpm"
+# define TEXT_E		"texture/floor2.xpm"
+# define TEXT_N		"texture/floor3.xpm"
+# define TEXT_S		"texture/floor4.xpm"
 
 typedef struct	s_ixy
 {
-	int 		x;
-	int 		y;
+	int	x;
+	int	y;
 }				t_ixy;
 
 typedef struct	s_dxy
@@ -84,27 +96,27 @@ typedef struct	s_ray
 	struct s_dxy	delta;
 	struct s_dxy	step;
 	double			cam;
-	double		perpwalldist;
-	int			hit;
-	int 		hit_side;
+	double			perpwalldist;
+	int				hit;
+	int				hit_side;
 }				t_ray;
 
 typedef struct	s_mlx
 {
-	void 		*mlx;
-	void 		*win;
-	void 		*img;
-	char 		*pxl;
-	int 		bpp;
-	int 		s_line;
-	int 		endian;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*pxl;
+	int		bpp;
+	int		s_line;
+	int		endian;
 }				t_mlx;
 
 typedef struct	s_env
 {
 	struct s_mlx		mlx;
 	struct s_player		player;
-	struct s_ray 		ray;
+	struct s_ray		ray;
 	struct s_ixy		tex;
 	struct s_img		*wall[10];
 	struct s_map		map;
@@ -115,14 +127,15 @@ typedef struct	s_env
 	int					x;
 	int					y;
 	double				wallx;
-	// struct s_dxy		floor;
-	// struct s_ixy		floortex;
-	// struct s_dxy		curfloor;
-	// double 				walldist;
-	// double 				playerdist;
-	// double				currentdist;
-	// double 				weight;
+	struct s_dxy		floor;
+	struct s_ixy		floortex;
+	struct s_dxy		curfloor;
+	double				walldist;
+	double				playerdist;
+	double				currentdist;
+	double				weight;
 	struct s_keyboard	key;
+	int					i;
 }				t_env;
 
 /*
@@ -136,26 +149,47 @@ void			read_params(t_env *e, char *input);
 */
 
 void			setup_mlx(t_env *e);
-void 			ft_error(char *error);
-int				key_press_hook(int keycode, t_env *e);
-int				key_release_hook(int keycode, t_env *e);
-int				expose_hook(t_env *e);
-t_list			*read_file(char	*filepath);
-t_player		*newplayer(double x, double y);
-t_dxy			newcoord(double x, double y);
-void			ft_raycasting(t_env *e);
-void			put_pxl(t_env *e, int x, int y, int color);
-int				tchouin(int r, int g, int b);
-int				getcolor(t_img *img, int x, int y, int fade);
-void			drawbyside(t_env *e, int x, int y);
-void			texture_load(t_env *e);
-void			initkeyboard(t_env *e);
-void			key_press(t_keyboard *key, int keycode);
-void			key_release(t_keyboard *key, int keycode);
+
+/*
+**	move.c
+*/
+
 void			key_up_down(t_env *e);
 void			key_left_right(t_env *e);
+
+/*
+**	main.c
+*/
+
+void			ft_error(char *error);
+
+/*
+**	keyhook.c
+*/
+
+void			key_press(t_keyboard *key, int keycode);
+void			key_release(t_keyboard *key, int keycode);
+int				key_press_hook(int keycode, t_env *e);
+int				key_release_hook(int keycode, t_env *e);
+
+/*
+**	raycast.c
+*/
+
+void			ft_raycasting(t_env *e);
+
+/*
+**	draw.c
+*/
+
+void			put_pxl(t_env *e, int x, int y, int color);
+int				getcolor(t_img *img, int x, int y, int fade);
+
+/*
+**	raydraw.c
+*/
+
 void			ft_draw(t_env *e, int x);
-void			render(t_env *e);
 void			ft_open_file(char *filepath);
 
 #endif

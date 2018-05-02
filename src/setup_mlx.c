@@ -1,6 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_mlx.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/02 19:02:24 by yokartou          #+#    #+#             */
+/*   Updated: 2018/05/02 19:03:40 by yokartou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-int		get_loop_hook(t_env *e)
+static void	ft_load_text(t_env *e)
+{
+	int		width;
+	int		height;
+
+	e->wall[0] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_W, &width, &height);
+	e->wall[1] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_E, &width, &height);
+	e->wall[2] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_N, &width, &height);
+	e->wall[3] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_S, &width, &height);
+}
+
+static int	ft_loop_hook(t_env *e)
 {
 	key_up_down(e);
 	key_left_right(e);
@@ -13,17 +36,27 @@ int		get_loop_hook(t_env *e)
 	return (0);
 }
 
-void	setup_mlx(t_env *e)
+static void	ft_init_var(t_env *e)
 {
-	e->mlx.mlx = mlx_init();
-	e->mlx.win = mlx_new_window(e->mlx.mlx, WIDTH, HEIGHT, "Wolf3d");
-	texture_load(e);
-	initkeyboard(e);
+	e->key.up = 0;
+	e->key.down = 0;
+	e->key.left = 0;
+	e->key.right = 0;
+	e->key.sleft = 0;
+	e->key.sright = 0;
 	e->mlx.bpp = 0;
 	e->mlx.s_line = 0;
 	e->mlx.endian = 0;
+}
+
+void		setup_mlx(t_env *e)
+{
+	ft_init_var(e);
+	e->mlx.mlx = mlx_init();
+	e->mlx.win = mlx_new_window(e->mlx.mlx, WIDTH, HEIGHT, "Wolf3d");
+	ft_load_text(e);
 	mlx_hook(e->mlx.win, 2, 1, key_press_hook, e);
 	mlx_hook(e->mlx.win, 3, 1, key_release_hook, e);
-	mlx_loop_hook(e->mlx.mlx, get_loop_hook, e);
+	mlx_loop_hook(e->mlx.mlx, ft_loop_hook, e);
 	mlx_loop(e->mlx.mlx);
 }
