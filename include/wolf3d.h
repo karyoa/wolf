@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:10:11 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:16:23 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:24:11 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ void			key_press(t_keyboard *key, int keycode);
 void			key_release(t_keyboard *key, int keycode);
 int				key_press_hook(int keycode, t_env *e);
 int				key_release_hook(int keycode, t_env *e);
+int				red_cross(int i);
 
 /*
 **	raycast.c

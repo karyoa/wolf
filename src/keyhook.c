@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:24 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 18:54:44 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:20:17 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	key_press(t_keyboard *key, int keycode)
 		key->left = 0;
 		key->right = 1;
 	}
+}
+
+int		red_cross(int i)
+{
+	exit(i);
 }
 
 void	key_release(t_keyboard *key, int keycode)

@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:02:24 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:03:40 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:25:20 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		setup_mlx(t_env *e)
 	e->mlx.win = mlx_new_window(e->mlx.mlx, WIDTH, HEIGHT, "Wolf3d");
 	ft_load_text(e);
 	mlx_hook(e->mlx.win, 2, 1, key_press_hook, e);
+	mlx_hook(e->mlx.win, 17, (1L << 1), red_cross, 0);
 	mlx_hook(e->mlx.win, 3, 1, key_release_hook, e);
 	mlx_loop_hook(e->mlx.mlx, ft_loop_hook, e);
 	mlx_loop(e->mlx.mlx);
