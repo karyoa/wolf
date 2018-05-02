@@ -6,7 +6,7 @@
 /*   By: ojerroud <ojerroud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:47:10 by ojerroud          #+#    #+#             */
-/*   Updated: 2018/05/02 19:01:41 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/02 20:51:16 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ static void	read_lines(t_env *e, int fd)
 	tab = NULL;
 	read_first_line(e, fd, line, tab);
 	read_map(e, fd, line, tab);
-	if (e->map.wall[(int)(e->player.pos.y - 0.5)][(int)(e->player.pos.x - 0.5)])
-		ft_error("player pos");
 }
 
 void		read_params(t_env *e, char *input)
