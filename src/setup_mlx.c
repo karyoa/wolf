@@ -29,7 +29,7 @@ void	render(t_env *e)
 	e->mlx.img = mlx_new_image(e->mlx.mlx, WIDTH, HEIGHT);
 	e->mlx.pxl = mlx_get_data_addr(e->mlx.img,
 	&(e->mlx.bpp), &(e->mlx.s_line), &(e->mlx.endian));
-	raycast(e);
+	ft_raycasting(e);
 	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.img, 0, 0);
 	mlx_destroy_image(e->mlx.mlx, e->mlx.img);
 }

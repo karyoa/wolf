@@ -1,6 +1,6 @@
 #include "wolf3d.h"
 
-void	rayinit(t_env *e, int x)
+void	ft_ray_init(t_env *e, int x)
 {
 	e->ray.cam = 2 * x / (double)(WIDTH) - 1;
 	e->ray.pos.x = e->player.pos.x;
@@ -15,7 +15,7 @@ void	rayinit(t_env *e, int x)
 			/ (e->ray.dir.y * e->ray.dir.y));
 }
 
-void	rayfindside(t_env *e)
+void	ft_ray_find_side(t_env *e)
 {
 	if (e->ray.dir.x < 0)
 	{
@@ -39,7 +39,7 @@ void	rayfindside(t_env *e)
 	}
 }
 
-void	raydda(t_env *e)
+void	ft_ray_dda(t_env *e)
 {
 	while (e->ray.hit == 0)
 	{
@@ -60,7 +60,7 @@ void	raydda(t_env *e)
 	}
 }
 
-void	raydist(t_env *e)
+void	ft_ray_dist(t_env *e)
 {
 	if (e->ray.hit_side == 0)
 		e->ray.perpwalldist = fabs(
@@ -70,19 +70,19 @@ void	raydist(t_env *e)
 				(e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y);
 }
 
-void	raycast(t_env *e)
+void	ft_raycasting(t_env *e)
 {
 	int			x;
 
 	x = 0;
 	while (x < WIDTH)
 	{
-		rayinit(e, x);
+		ft_ray_init(e, x);
 		e->ray.hit = 0;
-		rayfindside(e);
-		raydda(e);
-		raydist(e);
-		draw_ray(e, x);
+		ft_ray_find_side(e);
+		ft_ray_dda(e);
+		ft_ray_dist(e);
+		ft_draw(e, x);
 		x++;
 	}
 }

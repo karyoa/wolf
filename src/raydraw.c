@@ -1,6 +1,6 @@
 #include "wolf3d.h"
 
-void	ray_delimiter(t_env *e)
+void	ft_ray_limit(t_env *e)
 {
 	e->lineheight = abs((int)(HEIGHT / e->ray.perpwalldist));
 	e->drawstart = -e->lineheight / 2 + HEIGHT / 2;
@@ -21,13 +21,13 @@ void	ray_delimiter(t_env *e)
 	e->y = 0;
 }
 
-int		wall_orientation(t_env *e)
+int		ft_wall_side(t_env *e)
 {
 	if (e->ray.hit_side == 1)
 	{
 		if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||
 			(e->ray.step.x == 1 && e->ray.step.y == -1))
-			return (0);	
+			return (0);
 		if ((e->ray.step.x == -1 && e->ray.step.y == 1) ||
 			(e->ray.step.x == 1 && e->ray.step.y == 1))
 				return (1);
@@ -38,7 +38,7 @@ int		wall_orientation(t_env *e)
 	return (3);
 }
 
-void	draw_ray_wall(t_env *e)
+void	ft_draw_wall(t_env *e)
 {
 	int	d;
 	int	wall;
@@ -48,25 +48,21 @@ void	draw_ray_wall(t_env *e)
 	{
 		d = e->y * 256 - HEIGHT * 128 + e->lineheight * 128;
 		e->tex.y = ((d * 64) / e->lineheight) / 256;
-		// while(1){}
-		put_pxl(e, e->x, e->y, getcolor(e->wall[wall_orientation(e)],
+		put_pxl(e, e->x, e->y, getcolor(e->wall[ft_wall_side(e)],
 					e->tex.x, e->tex.y, e->ray.perpwalldist));
 		e->y++;
 	}
 }
 
-void	draw_ray(t_env *e, int x)
+void	ft_draw(t_env *e, int x)
 {
-	ray_delimiter(e);
+	ft_ray_limit(e);
 	e->x = x;
-	e->ray.zbuffer[x] = e->ray.perpwalldist;
-	// while (1){}
-	draw_ray_wall(e);
-	// while (1){}
+	ft_draw_wall(e);
 	while (e->y < HEIGHT)
 	{
-		put_pxl(e, e->x, e->y, 0x000000);
-		put_pxl(e, e->x, HEIGHT - e->y, 0x000000);
+		put_pxl(e, e->x, e->y, 0x252525);
+		put_pxl(e, e->x, HEIGHT - e->y, 0xabcdef);
 		e->y++;
 	}
 }

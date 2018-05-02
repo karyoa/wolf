@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yokartou <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/15 11:25:00 by yokartou          #+#    #+#              #
-#    Updated: 2018/03/01 14:02:01 by yokartou         ###   ########.fr        #
+#    Updated: 2018/05/02 14:04:54 by yokartou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ $(NAME): $(OBJ)
 	@echo "Libft Done"
 
 objs/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $< -I incs
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $< -I incs
 
 clean:
 	@rm -rf objs

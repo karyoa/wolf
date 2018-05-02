@@ -9,8 +9,6 @@
 # define WIDTH 640
 # define HEIGHT 480
 
-# define NBSPRITE 15
-
 # define KEY_ESC 53
 # define KEY_UP 126
 # define KEY_DOWN 125
@@ -28,10 +26,10 @@
 
 # define FOV 0.66
 
-# define TEXTURE_WEST		"texture/wall1h.xpm"
-# define TEXTURE_EAST		"texture/wall2h.xpm"
-# define TEXTURE_NORTH		"texture/wall3h.xpm"
-# define TEXTURE_SOUTH		"texture/wall4h.xpm"
+# define TEXTURE_WEST		"texture/floor1.xpm"
+# define TEXTURE_EAST		"texture/floor2.xpm"
+# define TEXTURE_NORTH		"texture/floor3.xpm"
+# define TEXTURE_SOUTH		"texture/floor4.xpm"
 
 typedef struct	s_ixy
 {
@@ -137,10 +135,9 @@ int				key_press_hook(int keycode, t_env *e);
 int				key_release_hook(int keycode, t_env *e);
 int				expose_hook(t_env *e);
 t_list			*read_file(char	*filepath);
-t_map			*map_parse(t_list	*list);
 t_player		*newplayer(double x, double y);
 t_dxy			newcoord(double x, double y);
-void			raycast(t_env *e);
+void			ft_raycasting(t_env *e);
 void			put_pxl(t_env *e, int x, int y, int color);
 int				tchouin(int r, int g, int b);
 int				getcolor(t_img *img, int x, int y, int fade);
@@ -151,7 +148,7 @@ void			key_press(t_keyboard *key, int keycode);
 void			key_release(t_keyboard *key, int keycode);
 void			key_up_down(t_env *e);
 void			key_left_right(t_env *e);
-void			draw_ray(t_env *e, int x);
+void			ft_draw(t_env *e, int x);
 void			render(t_env *e);
 void			ft_open_file(char *filepath);
 
