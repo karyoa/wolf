@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:21 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/03 10:30:55 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:19:15 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ static void	ft_check_map(t_env *e)
 
 static void	ft_check_pos(t_env *e)
 {
-	if (e->player.pos.x == 1 || e->player.pos.y == 1
-		|| e->player.pos.y >= e->map.height - 1
-		|| e->player.pos.x >= e->map.width - 1)
-		ft_error("Error Spawn Pos");
-	if (e->map.wall[(int)e->player.pos.x][(int)e->player.pos.y] == 1)
-		ft_error("Error Spawn In Wall");
+
+	int 	x;
+	int 	y;
+
+	x = (int)(e->player.pos.x - 0.5);
+	y = (int)(e->player.pos.y - 0.5);
+	if (e->map.wall[y][x] > 0)
+		ft_error("Error Spawn");
 }
 
 void		ft_error(char *error)

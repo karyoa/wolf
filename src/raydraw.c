@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/03 10:58:55 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:19:14 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	ft_ray_limit(t_env *e)
 {
-	e->lineheight = abs((int)(HEIGHT / e->ray.perpwalldist));
-	e->drawstart = -e->lineheight / 2 + HEIGHT / 2;
+	e->lineheight = abs((int)(e->height / e->ray.perpwalldist));
+	e->drawstart = -e->lineheight / 2 + e->height / 2;
 	if (e->drawstart < 0)
 		e->drawstart = 0;
-	e->drawend = e->lineheight / 2 + HEIGHT / 2;
-	if (e->drawend >= HEIGHT)
-		e->drawend = HEIGHT - 1;
+	e->drawend = e->lineheight / 2 + e->height / 2;
+	if (e->drawend >= e->height)
+		e->drawend = e->height - 1;
 	if (e->ray.hit_side == 1)
 		e->wallx = e->ray.pos.x + ((e->ray.map.y - e->ray.pos.y +
 		(1 - e->ray.step.y) / 2) / e->ray.dir.y) * e->ray.dir.x;
@@ -58,7 +58,7 @@ static void	ft_draw_wall(t_env *e)
 	wall = e->map.wall[(int)e->ray.map.y][(int)e->ray.map.x];
 	while (e->y < e->drawend)
 	{
-		d = e->y * 256 - HEIGHT * 128 + e->lineheight * 128;
+		d = e->y * 256 - e->height * 128 + e->lineheight * 128;
 		e->tex.y = ((d * 64) / e->lineheight) / 256;
 		put_pxl(e, e->x, e->y, getcolor(e->wall[ft_wall_side(e)],
 					e->tex.x, e->tex.y, e->ray.perpwalldist));
@@ -98,9 +98,9 @@ void		ft_draw(t_env *e, int x)
 	ft_ray_limit(e);
 	ft_draw_wall(e);
 	ft_draw_floor(e);
-	while (e->y < HEIGHT + 1)
+	while (e->y < e->height + 1)
 	{
-		e->currentdist = HEIGHT / (2.0 * e->y - HEIGHT);
+		e->currentdist = e->height / (2.0 * e->y - e->height);
 		e->weight = (e->currentdist - e->playerdist)
 		/ (e->walldist - e->playerdist);
 		e->curfloor.x = e->weight * e->floor.x
@@ -111,7 +111,7 @@ void		ft_draw(t_env *e, int x)
 		e->floortex.y = (int)(e->curfloor.y * 64) % 64;
 		put_pxl(e, e->x, e->y,
 			getcolor(e->wall[4], e->floortex.x, e->floortex.y, 0));
-		put_pxl(e, e->x, HEIGHT - e->y,
+		put_pxl(e, e->x, e->height - e->y,
 			getcolor(e->wall[5], e->floortex.x, e->floortex.y, 0));
 		e->y++;
 	}

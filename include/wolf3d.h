@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:10:11 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/03 11:13:49 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:19:21 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include <stdio.h>
 # include "../libft/incs/libft.h"
 # include "mlx.h"
-
-# define WIDTH 640
-# define HEIGHT 480
 
 # define KEY_ESC 53
 # define KEY_UP 126
@@ -114,6 +111,8 @@ typedef struct	s_env
 	struct s_ixy		tex;
 	struct s_img		*wall[6];
 	struct s_map		map;
+	int 				width;
+	int 				height;
 	char				*input;
 	int					lineheight;
 	int					drawstart;

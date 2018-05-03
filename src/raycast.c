@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 18:59:35 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:18:48 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_ray_init(t_env *e, int x)
 {
-	e->ray.cam = 2 * x / (double)(WIDTH) - 1;
+	e->ray.cam = 2 * x / (double)(e->width) - 1;
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
 	e->ray.dir.x = e->player.dir.x + e->player.plane.x * e->ray.cam;
@@ -89,7 +89,7 @@ void		ft_raycasting(t_env *e)
 	int			x;
 
 	x = 0;
-	while (x < WIDTH)
+	while (x < e->width)
 	{
 		ft_ray_init(e, x);
 		e->ray.hit = 0;

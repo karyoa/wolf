@@ -6,7 +6,7 @@
 #    By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/12 21:43:25 by yokartou          #+#    #+#              #
-#    Updated: 2018/05/03 11:22:01 by yokartou         ###   ########.fr        #
+#    Updated: 2018/05/03 14:20:51 by yokartou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ objs :
 $(NAME): $(OBJ)
 	@make -C libft/
 	@make -C minilibx
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS) #-g -fsanitize=address
 	@echo "Wolf3d Done"
 
 objs/%.o: $(SRC_DIR)/%.c
