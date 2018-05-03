@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:31:29 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 10:58:55 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		ft_draw(t_env *e, int x)
 	ft_ray_limit(e);
 	ft_draw_wall(e);
 	ft_draw_floor(e);
-	while (e->y < HEIGHT)
+	while (e->y < HEIGHT + 1)
 	{
 		e->currentdist = HEIGHT / (2.0 * e->y - HEIGHT);
 		e->weight = (e->currentdist - e->playerdist)

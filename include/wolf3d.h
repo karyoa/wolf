@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:10:11 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:33:16 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 11:13:49 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_SPACEBAR 49
-
-# define MOVESPEED 0.1
-# define ROTSPEED 0.1
-
-# define CR cos(ROTSPEED)
-# define SR sin(ROTSPEED)
-# define C_R cos(-ROTSPEED)
-# define S_R sin(-ROTSPEED)
 
 # define FOV 0.66
 

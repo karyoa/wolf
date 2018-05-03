@@ -6,7 +6,7 @@
 /*   By: ojerroud <ojerroud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:47:10 by ojerroud          #+#    #+#             */
-/*   Updated: 2018/05/02 20:51:16 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/03 10:28:36 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static void	read_first_line(t_env *e, int fd, char *line, char **tab)
 	ft_strdel(&line);
 	e->map.width = ft_atoi(tab[0]);
 	e->map.height = ft_atoi(tab[1]);
-	e->player.pos.x = ft_atoi(tab[2]);
-	e->player.pos.y = ft_atoi(tab[3]);
-	e->player.dir.x = e->player.pos.x - 2;
-	e->player.dir.y = e->player.pos.x - 1;
+	e->player.pos.x = ft_atoi(tab[2]) + 0.5;
+	e->player.pos.y = ft_atoi(tab[3]) + 0.5;
+	e->player.dir.x = -1;
+	e->player.dir.y = 0;
 	(e->player.pos.x < 1) ? e->player.pos.x = 1 : 0;
 	(e->player.pos.x > e->map.width) ? e->player.pos.x = e->map.width : 0;
 	(e->player.pos.y < 1) ? e->player.pos.y = 1 : 0;
