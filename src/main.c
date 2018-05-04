@@ -41,12 +41,12 @@ static void	ft_check_map(t_env *e)
 			if (x == 0 || x == e->map.height - 1)
 			{
 				if (e->map.wall[x][y] == 0)
-					ft_error("Error Wall Map");
+					ft_error("no wall on edge map.");
 			}
 			if (y == 0 || y == e->map.width - 1)
 			{
 				if (e->map.wall[x][y] == 0)
-					ft_error("Error Wall Map");
+					ft_error("no wall on edge map.");
 			}
 		}
 	}
@@ -60,12 +60,13 @@ static void	ft_check_pos(t_env *e)
 	x = (int)(e->player.pos.x - 0.5);
 	y = (int)(e->player.pos.y - 0.5);
 	if (e->map.wall[y][x] > 0)
-		ft_error("Error Spawn");
+		ft_error("Spawn.");
 }
 
 void		ft_error(char *error)
 {
-	ft_putstr(error);
+	ft_putstr("Error : ");
+	ft_putendl(error);
 	exit(1);
 }
 
@@ -74,7 +75,7 @@ int			main(int ac, char **av)
 	t_env	e;
 
 	if (ac != 2)
-		ft_error("Error Number Argument");
+		ft_error("Number Argument.");
 	read_params(&e, av[1]);
 	ft_check_map(&e);
 	ft_check_pos(&e);

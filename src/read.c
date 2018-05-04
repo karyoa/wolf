@@ -22,21 +22,21 @@ static void	read_map(t_env *e, int fd, char *line, char **tab)
 	i = -1;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		(i >= e->map.height) ? ft_error("wrong map") : 0;
-		e->map.wall[++i] = (int *)malloc(sizeof(int) * e->map.width);
+		(++i >= e->map.height) ? ft_error("wrong number of lines.") : 0;
+		e->map.wall[i] = (int *)malloc(sizeof(int) * e->map.width);
 		tab = ft_strsplit(line, ' ');
 		ft_strdel(&line);
 		j = -1;
 		while (tab[++j])
 		{
-			(j >= e->map.width) ? ft_error("wrong map") : 0;
-			e->map.wall[i][j] = ft_atoi(tab[j]);
+			(j >= e->map.width) ? ft_error("wrong number of columns.") : 0;
+			e->map.wall[i][j] = (ft_atoi(tab[j])) ? 1 : 0;
 			ft_strdel(&tab[j]);
 		}
-		(j != e->map.width) ? ft_error("wrong map") : 0;
+		(j != e->map.width) ? ft_error("wrong map width.") : 0;
 		free(tab);
 	}
-	(i + 1 != e->map.height) ? ft_error("wrong map") : 0;
+	(i + 1 != e->map.height) ? ft_error("wrong map height.") : 0;
 	(ret == -1) ? ft_error("gnl") : 0;
 }
 
@@ -45,13 +45,13 @@ static void	read_first_line(t_env *e, int fd, char *line, char **tab)
 	int		cpt;
 
 	if (get_next_line(fd, &line) < 1)
-		ft_error("file empty");
+		ft_error("empty file");
 	tab = ft_strsplit(line, ' ');
 	cpt = 0;
 	while (tab[cpt])
 		cpt++;
 	if (cpt != 4)
-		ft_error("wrong first line (4 int expected: width height posx posy)");
+		ft_error("wrong first line (4 int expected: width height posx posy).");
 	ft_strdel(&line);
 	e->map.width = ft_atoi(tab[0]);
 	e->map.height = ft_atoi(tab[1]);
@@ -86,7 +86,7 @@ void		read_params(t_env *e, char *input)
 
 	e->input = input;
 	if ((fd = open(e->input, O_RDONLY)) == -1)
-		ft_error("cannot open map");
+		ft_error("wrong fd.");
 	read_lines(e, fd);
 	close(fd);
 }

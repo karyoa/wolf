@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:02:24 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/03 15:17:41 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:18:21 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	ft_load_text(t_env *e)
 {
 	int		width;
 	int		height;
+	int		i;
 
 	e->wall[0] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_W, &width, &height);
 	e->wall[1] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_E, &width, &height);
@@ -23,6 +24,10 @@ static void	ft_load_text(t_env *e)
 	e->wall[3] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_S, &width, &height);
 	e->wall[4] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_F, &width, &height);
 	e->wall[5] = mlx_xpm_file_to_image(e->mlx.mlx, TEXT_P, &width, &height);
+	i = -1;
+	while (++i < 6)
+		if (!e->wall[i])
+			ft_error("wrong texture.");
 }
 
 static int	ft_loop_hook(t_env *e)
