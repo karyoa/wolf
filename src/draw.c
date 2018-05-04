@@ -15,6 +15,7 @@
 void	put_pxl(t_env *e, int x, int y, int color)
 {
 	int		i;
+
 	if ((x > 0 && x < e->width) && (y > 0 && y < e->height))
 	{
 		i = e->width * y * 4 + x * 4;

@@ -23,7 +23,6 @@
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-# define KEY_SPACEBAR 49
 
 # define FOV 0.66
 
@@ -111,8 +110,8 @@ typedef struct	s_env
 	struct s_ixy		tex;
 	struct s_img		*wall[6];
 	struct s_map		map;
-	int 				width;
-	int 				height;
+	int					width;
+	int					height;
 	char				*input;
 	int					lineheight;
 	int					drawstart;

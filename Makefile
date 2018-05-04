@@ -45,7 +45,7 @@ objs :
 $(NAME): $(OBJ)
 	@make -C libft/
 	@make -C minilibx
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS) #-g -fsanitize=address
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I $(INC_DIR) $(MLXFLAGS) $(LIBS) -g -fsanitize=address
 	@echo "Wolf3d Done"
 
 objs/%.o: $(SRC_DIR)/%.c

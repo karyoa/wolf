@@ -54,9 +54,8 @@ static void	ft_check_map(t_env *e)
 
 static void	ft_check_pos(t_env *e)
 {
-
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
 
 	x = (int)(e->player.pos.x - 0.5);
 	y = (int)(e->player.pos.y - 0.5);
