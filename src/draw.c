@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:34 by yokartou          #+#    #+#             */
-/*   Updated: 2018/05/02 19:33:45 by yokartou         ###   ########.fr       */
+/*   Updated: 2018/05/04 08:07:48 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 void	put_pxl(t_env *e, int x, int y, int color)
 {
-	char	b;
-	char	g;
-	char	r;
 	int		i;
-
-	if (color == 256 * 256 * 256 + 256 * 256 + 256)
-		return ;
-	b = color % 256;
-	g = (color / 256) % 256;
-	r = (color / 256 / 256) % 256;
-	i = (e->mlx.s_line * y) + (x * (e->mlx.bpp / 8));
-	e->mlx.pxl[i] = b;
-	e->mlx.pxl[i + 1] = g;
-	e->mlx.pxl[i + 2] = r;
+	if ((x > 0 && x < e->width) && (y > 0 && y < e->height))
+	{
+		i = e->width * y * 4 + x * 4;
+		e->mlx.pxl[i] = color;
+		e->mlx.pxl[i + 1] = color >> 8;
+		e->mlx.pxl[i + 2] = color >> 16;
+	}
 }
 
 int		getcolor(t_img *img, int x, int y, int fade)
