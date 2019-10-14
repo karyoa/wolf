@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:41:26 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:42:41 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	ft_ray_dda(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.hit_side = 1;
 		}
+		//	check if ray has hit a wall
 		if (e->map.wall[(int)e->ray.map.y][(int)e->ray.map.x] > 0)
 			e->ray.hit = 1;
 	}
