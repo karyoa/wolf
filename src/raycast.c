@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:08:28 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:36:44 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_ray_init(t_env *e, int x)
 static void	ft_ray_find_side(t_env *e)
 {
 	//	what direction to step in x or y direction (+1 or -1)
-	
+
 	//	calculate ray.step.x and initial ray.dist.x
 	if (e->ray.dir.x < 0)
 	{
@@ -56,9 +56,11 @@ static void	ft_ray_find_side(t_env *e)
 
 static void	ft_ray_dda(t_env *e)
 {
+	//	ray.hit was there a wall hit?
 	while (e->ray.hit == 0)
 	{
 		//	jump to next map square, or in x direction, or in y direction
+		//	ray.hit_side was a NS or a EW wall hit?
 		if (e->ray.dist.x < e->ray.dist.y)
 		{
 			e->ray.dist.x += e->ray.delta.x;
@@ -71,7 +73,6 @@ static void	ft_ray_dda(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.hit_side = 1;
 		}
-		//	check if ray has hit a wall
 		if (e->map.wall[(int)e->ray.map.y][(int)e->ray.map.x] > 0)
 			e->ray.hit = 1;
 	}
