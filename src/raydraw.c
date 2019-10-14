@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:31:19 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:45:28 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	ft_ray_limit(t_env *e)
 	else
 		e->wallx = e->ray.pos.y + ((e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x) / 2) / e->ray.dir.x) * e->ray.dir.y;
 	e->wallx -= floor(e->wallx);
+	//	x coordinate on the texture
 	e->tex.x = (int)(e->wallx * (double)64);
 	e->tex.x = 64 - e->tex.x - 1;
 	e->y = 0;
