@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:14:05 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:23:09 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_ray_limit(t_env *e)
 
 static int	ft_wall_side(t_env *e)
 {
-	// calculate which side has been hit by ray
+	//	calculate which side has been hit by ray
 	if (e->ray.hit_side == 1)
 	{
 		if ((e->ray.step.x == -1 && e->ray.step.y == -1) || (e->ray.step.x == 1 && e->ray.step.y == -1))
@@ -57,6 +57,7 @@ static void	ft_draw_wall(t_env *e)
 	wall = e->map.wall[(int)e->ray.map.y][(int)e->ray.map.x];
 	while (e->y < e->drawend)
 	{
+		//	256 and 128 factors to avoid floats
 		d = e->y * 256 - e->height * 128 + e->lineheight * 128;
 		e->tex.y = ((d * 64) / e->lineheight) / 256;
 		put_pxl(e, e->x, e->y, getcolor(e->wall[ft_wall_side(e)], e->tex.x, e->tex.y, e->ray.perpwalldist));
