@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:36:44 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:41:26 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 static void	ft_ray_init(t_env *e, int x)
 {
-	e->ray.cam = 2 * x / (double)(e->width) - 1;
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
+	//	calculate ray position and direction
+	//	x coordinate in camera space
+	e->ray.cam = 2 * x / (double)(e->width) - 1;
 	e->ray.dir.x = e->player.dir.x + e->player.plane.x * e->ray.cam;
 	e->ray.dir.y = e->player.dir.y + e->player.plane.y * e->ray.cam;
+	//	which box of the map we're in
 	e->ray.map.x = (int)e->ray.pos.x;
 	e->ray.map.y = (int)e->ray.pos.y;
+	//	length of ray from one x or y-side to next x or y-side
 	e->ray.delta.x = sqrt(1 + (e->ray.dir.y * e->ray.dir.y)
 			/ (e->ray.dir.x * e->ray.dir.x));
 	e->ray.delta.y = sqrt(1 + (e->ray.dir.x * e->ray.dir.x)
