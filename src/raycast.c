@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:19 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:42:41 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:44:06 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	ft_ray_dda(t_env *e)
 
 static void	ft_ray_dist(t_env *e)
 {
-	//	calculate distance of perpendicular ray
+	//	calculate distance of perpendicular ray (euclidean distance will give fisheye effect)
 	if (e->ray.hit_side == 0)
 		e->ray.perpwalldist = fabs((e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x) / 2) / e->ray.dir.x);
 	else
@@ -97,6 +97,7 @@ void		ft_raycasting(t_env *e)
 	int			x;
 
 	x = 0;
+	//	main loop
 	while (x < e->width)
 	{
 		ft_ray_init(e, x);
