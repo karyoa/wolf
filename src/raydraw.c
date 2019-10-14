@@ -6,7 +6,7 @@
 /*   By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:52:16 by yokartou          #+#    #+#             */
-/*   Updated: 2019/10/14 11:23:09 by yokartou         ###   ########.fr       */
+/*   Updated: 2019/10/14 11:31:19 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_ray_limit(t_env *e)
 	e->drawend = e->lineheight / 2 + e->height / 2;
 	if (e->drawend >= e->height)
 		e->drawend = e->height - 1;
-	//	calulate value of wallx
+	//	calulate value of wallx (wallx is where exactly the wall was hit)
 	if (e->ray.hit_side == 1)
 		e->wallx = e->ray.pos.x + ((e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y) * e->ray.dir.x;
 	else
